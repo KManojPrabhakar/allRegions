@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row margin-top-20" *ngIf="currencyViewresponse">
+		<div class="col-lg-4 col-md-6  col-xs-12 margin-bottom-20"  *ngFor="let currency of currencyViewresponse">
+			<div class="card border border-danger"  >
+				<div class="card-body">
+					<img class="img-fluid" src={{currency.flag}} alt="flag" />
+					<h5 class="card-title">Name: {{currency.name}}</h5>
+					<p class="card-text">Capital: {{currency.capital}}</p>
+					<p class="card-text">Region: {{currency.region}}</p>
+					<p class="card-text">Sub Region: {{currency.subregion}}</p>
+					<p class="card-text">Timezones: {{currency.timezones[0]}}</p>
+					<p class="card-text">Population: {{currency.population}}</p>
+					<p class="card-text">NativeName: {{currency.nativeName}}</p>
+					<div *ngFor="let currency1 of currency.currencies">
+						<a  *ngIf="currency1.code" class="card-text" [routerLink]="['/currency-view',currency1.code]" >Currency: {{currency1.name}}</a>
+					</div>
+					<div *ngFor="let language of currency.languages">
+						<a *ngIf="language.iso639_1" class="card-text" [routerLink]="['/language-view',language.iso639_1]">Language: {{language.name}}</a>
+					</div>
+					<a [routerLink]="['/single-view',currency.name]" class="btn btn-danger">More Info</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+					<a (click) ="goBackToPreviousPage()" class="btn btn-danger margin-top-20">Go Back</a>
+
+	
+</div>

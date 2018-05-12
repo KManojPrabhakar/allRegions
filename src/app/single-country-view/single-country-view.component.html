@@ -1,0 +1,78 @@
+<div class="container">
+  <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">About</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Geographical Details</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Language Details</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      	<div class="row margin-top-20" *ngIf="singleViewResponse">
+    
+		<div class="col-lg-4 col-md-6  col-xs-12 margin-bottom-20"  *ngFor="let region of singleViewResponse">
+			<div class="card border border-danger"  >
+				<div class="card-body">
+					<img class="img-fluid" src={{region.flag}} alt="flag" />
+					<h5 class="card-title">Name: {{region.name}}</h5>
+					<p class="card-text">Capital: {{region.capital}}</p>
+					<p class="card-text">Region: {{region.region}}</p>
+					<p class="card-text">Sub Region: {{region.subregion}}</p>
+          <p class="card-text">NativeName: {{region.nativeName}}</p>
+					<a (click) ="goBackToPreviousPage()" class="btn btn-danger">Go Back</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    	<div class="row margin-top-20" *ngIf="singleViewResponse">
+    
+		<div class="col-lg-4 col-md-6  col-xs-12 margin-bottom-20"  *ngFor="let region of singleViewResponse">
+			<div class="card border border-success"  >
+				<div class="card-body">
+					<img class="img-fluid" src={{region.flag}} alt="flag" />
+          <h5 class="card-title">Name: {{region.name}}</h5>
+					<p class="card-text">Population: {{region.population}}</p>
+          <p class="card-text">Timezones: {{region.timezones[0]}}</p>
+					<div *ngFor="let currency of region.currencies">
+						<a *ngIf="currency.code" class="card-text" [routerLink]="['/currency-view',currency.code]" >Currency: {{currency.name}}</a>
+					</div>
+					<p class="card-text">Demonym: {{region.demonym}}</p>
+
+          
+					<a (click) ="goBackToPreviousPage()" class="btn btn-danger">Go Back</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    	<div class="row margin-top-20" *ngIf="singleViewResponse">
+    
+		<div class="col-lg-4 col-md-6  col-xs-12 margin-bottom-20"  *ngFor="let region of singleViewResponse">
+			<div class="card border border-success"  >
+				<div class="card-body">
+					<img class="img-fluid" src={{region.flag}} alt="flag" />
+					<h5 class="card-title">Name: {{region.name}}</h5>
+					<div *ngFor="let language of region.languages">
+						<a  *ngIf="language.iso639_1" class="card-text" [routerLink]="['/language-view',language.iso639_1]">Language: {{language.name}}</a>
+					</div>
+          <div *ngFor="let region1 of region.altSpellings">
+            <p>Alt Spellings: {{region1}}</p>
+          </div>
+					<a (click) ="goBackToPreviousPage()" class="btn btn-danger">Go Back</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+
+
+
+	
+</div>
